@@ -14,7 +14,8 @@ set(output_name "3DEngine")
 
 file(GLOB_RECURSE sources
     "src/main.cpp" # main file
-    "src/renderEngine/*.cpp"
+    "src/renderEngine/*.cpp" # render engine classes
+    "src/shaders/*.cpp" # shaders
 )
 
 add_executable(${output_name} ${sources})
