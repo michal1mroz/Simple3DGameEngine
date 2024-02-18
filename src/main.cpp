@@ -14,18 +14,21 @@ int main(){
         -0.5f, 0.5f, 0.0f,
         -0.5f, -0.5f, 0.0f,
         0.5f, -0.5f, 0.0f,
-
-        0.5f, -0.5f, 0.0f,
-        0.5f, 0.5f, 0.0f,
-        -0.5f, 0.5f, 0.0f,
+        0.5f, 0.5f, 0.0f
     };
 
+    int indices[] = {
+        0,1,3,
+        3,1,2
+    };
+
+    int vertCount = sizeof(vertices) / sizeof(float);
+    int indCount = sizeof(indices) / sizeof(int);
 
     Loader loader;
     Renderer renderer;
 
-    RawModel model = loader.load_to_VAO(vertices, sizeof(vertices) / sizeof(float));
-    std::cout <<model.get_vertexCount();
+    RawModel model = loader.load_to_VAO(vertices, vertCount, indices, indCount);
     while(!glfwWindowShouldClose(dm.window)){
         renderer.prepare();
         renderer.render(model);

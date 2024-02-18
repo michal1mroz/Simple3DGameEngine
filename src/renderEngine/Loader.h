@@ -15,8 +15,10 @@ private:
     unsigned int create_VAO();
     void store_data_in_attrib_list(int attribNumber, float data[], int vertCount);
     void unbind_VAO();
+    void bind_indices_buffer(int indices[], int indicesCount);
+
 public:
-    RawModel load_to_VAO(float positions[], int vertCount);
+    RawModel load_to_VAO(float positions[], int vertCount, int indices[], int indicesCount);
     void clean_up();
 };
 
