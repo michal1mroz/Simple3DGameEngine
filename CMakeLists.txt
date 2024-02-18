@@ -12,7 +12,12 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 set(output_name "3DEngine")
 
-add_executable(${output_name} src/main.cpp src/renderEngine/DisplayManager.cpp)
+file(GLOB_RECURSE sources
+    "src/main.cpp" # main file
+    "src/renderEngine/*.cpp"
+)
+
+add_executable(${output_name} ${sources})
 
 target_link_libraries(${output_name} GLEW glfw OpenGL)
 

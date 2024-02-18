@@ -15,7 +15,7 @@ public:
 
     void create_display();
     void update_display();
-    void clost_display();
+    void close_display();
 };
 
 #endif //DISPLAYMANAGER_H

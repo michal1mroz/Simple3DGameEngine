@@ -22,11 +22,10 @@ void DisplayManager::create_display(){
 }
 
 void DisplayManager::update_display(){
-    glClear(GL_COLOR_BUFFER_BIT);
     glfwSwapBuffers(this->window);
     glfwPollEvents();
 }
 
-void DisplayManager::clost_display(){
+void DisplayManager::close_display(){
     glfwTerminate();
 }
