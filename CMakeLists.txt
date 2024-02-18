@@ -25,7 +25,7 @@ target_link_libraries(${output_name} GLEW glfw OpenGL)
 add_custom_target(run
     COMMAND ${CMAKE_BINARY_DIR}/${output_name}
     DEPENDS ${output_name}
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/..
     COMMENT "Running code"
 )
 

@@ -1,6 +1,7 @@
 #include "ShaderProgram.h"
 
 ShaderProgram::ShaderProgram(std::string vertexFile, std::string fragmentFile){
+    std::cout<<vertexFile<<std::endl;
     this->vertexShaderID = load_shader(vertexFile, GL_VERTEX_SHADER);
     this->fragmentShaderID = load_shader(fragmentFile, GL_FRAGMENT_SHADER);
 
@@ -14,34 +15,27 @@ ShaderProgram::ShaderProgram(std::string vertexFile, std::string fragmentFile){
 
 int ShaderProgram::load_shader(std::string file, int type){
     
-    // std::ifstream ifs(file);
-    // if(!ifs.is_open()){
-    //     std::cerr<< "Unable to open shader file: " <<file<<std::endl;
-    //     exit(-1);
-    // }
-    
-    // std::stringstream shaderStream;
-    // shaderStream << ifs.rdbuf();
-    // std::string shaderSource = shaderStream.str();
-    // if(shaderSource.empty()){
-    //     std::cerr<< "File: "<<file<<" is empty"<<std::endl;
-    //     exit(-1);
-    // }
-    // const char* shaderSourcePtr = shaderSource.c_str();
-
     std::ifstream ifs(file);
-    std::string shaderSource(
-        (std::istreambuf_iterator<char>(ifs)),
-        std::istreambuf_iterator<char>()
-    );    
-    auto source = shaderSource.c_str();
-
+    if(!ifs.is_open()){
+        std::cerr<< "Unable to open shader file: " <<file<<std::endl;
+        exit(-1);
+    }
+    
+    std::stringstream shaderStream;
+    shaderStream << ifs.rdbuf();
+    std::string shaderSource = shaderStream.str();
+    if(shaderSource.empty()){
+        std::cerr<< "File: "<<file<<" is empty"<<std::endl;
+        exit(-1);
+    }
+    const char* shaderSourcePtr = shaderSource.c_str();
     unsigned int shaderID = glCreateShader(type);
-    glShaderSource(shaderID, 1, &source, nullptr);
+    glShaderSource(shaderID, 1, &shaderSourcePtr, nullptr);
     glCompileShader(shaderID);
 
     int status;
     glGetShaderiv(shaderID, GL_COMPILE_STATUS,&status);
+    std::cout << status;
     if(!status){
         char buffer[512];
         glGetShaderInfoLog(shaderID, 512, nullptr, buffer);
