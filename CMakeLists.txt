@@ -6,6 +6,8 @@ find_package(OpenGL REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
 find_package(GLEW REQUIRED)
 
+set(STB_INCLUDE_DIR "usr/include/stb")
+
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
@@ -17,6 +19,8 @@ file(GLOB_RECURSE sources
     "src/renderEngine/*.cpp" # render engine classes
     "src/shaders/*.cpp" # shaders
 )
+
+include_directories(${STB_INCLUDE_DIR})
 
 add_executable(${output_name} ${sources})
 

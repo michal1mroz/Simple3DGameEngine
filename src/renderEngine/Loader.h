@@ -3,6 +3,7 @@
 
 #include "RawModel.h"
 #include <GL/glew.h>
+#include <GL/glut.h>
 #include <GLFW/glfw3.h>
 #include <vector>
 #include <iostream>
@@ -19,6 +20,7 @@ private:
 
 public:
     RawModel load_to_VAO(float positions[], int vertCount, int indices[], int indicesCount);
+    int load_texture(std::string fileName);
     void clean_up();
 };
 

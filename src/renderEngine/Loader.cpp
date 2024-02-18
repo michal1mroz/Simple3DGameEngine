@@ -50,3 +50,7 @@ void Loader::bind_indices_buffer(int indices[], int indicesCount){
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboID);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesCount * sizeof(int), indices, GL_STATIC_DRAW);
 }
+
+int Loader::load_texture(std::string fileName){
+    return 0;
+}
