@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 find_package(OpenGL REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
+find_package(GLEW REQUIRED)
 
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
@@ -11,9 +12,9 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 set(output_name "3DEngine")
 
-add_executable(${output_name} src/main.cpp)
+add_executable(${output_name} src/main.cpp src/renderEngine/DisplayManager.cpp)
 
-target_link_libraries(${output_name} glfw OpenGL)
+target_link_libraries(${output_name} GLEW glfw OpenGL)
 
 add_custom_target(run
     COMMAND ${CMAKE_BINARY_DIR}/${output_name}
