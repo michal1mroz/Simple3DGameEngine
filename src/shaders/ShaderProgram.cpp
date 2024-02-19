@@ -1,7 +1,6 @@
 #include "ShaderProgram.h"
 
 ShaderProgram::ShaderProgram(std::string vertexFile, std::string fragmentFile){
-    std::cout<<vertexFile<<std::endl;
     this->vertexShaderID = load_shader(vertexFile, GL_VERTEX_SHADER);
     this->fragmentShaderID = load_shader(fragmentFile, GL_FRAGMENT_SHADER);
 
@@ -35,7 +34,6 @@ int ShaderProgram::load_shader(std::string file, int type){
 
     int status;
     glGetShaderiv(shaderID, GL_COMPILE_STATUS,&status);
-    std::cout << status;
     if(!status){
         char buffer[512];
         glGetShaderInfoLog(shaderID, 512, nullptr, buffer);
