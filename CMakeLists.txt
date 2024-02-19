@@ -6,7 +6,7 @@ find_package(OpenGL REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
 find_package(GLEW REQUIRED)
 
-set(STB_INCLUDE_DIR "usr/include/stb")
+set(STB_INCLUDE_DIR "usr/include/stb/stb_image.h")
 
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
@@ -18,6 +18,8 @@ file(GLOB_RECURSE sources
     "src/main.cpp" # main file
     "src/renderEngine/*.cpp" # render engine classes
     "src/shaders/*.cpp" # shaders
+    "src/textures/*.cpp"
+    "src/models/*.cpp"
 )
 
 include_directories(${STB_INCLUDE_DIR})

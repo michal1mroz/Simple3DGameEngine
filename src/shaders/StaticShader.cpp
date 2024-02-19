@@ -7,4 +7,5 @@ StaticShader::StaticShader() : ShaderProgram(VERTEX_FILE, FRAGMENT_FILE){}
 
 void StaticShader::bind_attributes(){
     bind_attribute(0, "position");
+    bind_attribute(1, "textureCoords");
 }
