@@ -13,6 +13,8 @@ private:
     int width, height, colorChanels;
     unsigned int textureID;
     unsigned char* bytes;
+
+    void texture_generate_texture();
 };
 
 #endif // TEXTURE_H
