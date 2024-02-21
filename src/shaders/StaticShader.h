@@ -1,16 +1,17 @@
 #ifndef STATICSHADER_H
 #define STATICSHADER_H
 
+#define GLM_ENABLE_EXPERIMENTAL
+#include <iostream>
 #include "ShaderProgram.h"
 #include <glm/glm.hpp>
-
-#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
 class StaticShader : public ShaderProgram{
 public:
     StaticShader();
     void load_transformation_matrix(glm::mat4& mat);
+    void load_projection_matrix(glm::mat4& mat);
 
 protected:
     virtual void bind_attributes() override;
@@ -20,7 +21,8 @@ private:
     static const std::string VERTEX_FILE;
     static const std::string FRAGMENT_FILE;
 
-    int locationTransformationMatrix;    
+    int locationTransformationMatrix; 
+    int locationProjectionMatrix;
 };
 
 #endif //STATICSHADER_H

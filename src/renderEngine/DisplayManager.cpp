@@ -29,3 +29,11 @@ void DisplayManager::update_display(){
 void DisplayManager::close_display(){
     glfwTerminate();
 }
+
+int DisplayManager::get_width(){
+    return this->WIDTH;
+}
+
+int DisplayManager::get_height(){
+    return this->HEIGHT;
+}

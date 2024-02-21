@@ -16,6 +16,10 @@ public:
     void create_display();
     void update_display();
     void close_display();
+
+    int get_width();
+    int get_height();
+
 };
 
 #endif //DISPLAYMANAGER_H
