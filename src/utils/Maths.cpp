@@ -11,3 +11,12 @@ glm::mat4 Maths::create_transformation_matrix(glm::vec3& translation, float rx, 
 
     return transformationMatrix;
 }
+
+glm::mat4 Maths::create_view_matrix(Camera camera){
+    glm::mat4 view(1.f);
+    view = glm::rotate(view, glm::radians(camera.get_pitch()), glm::vec3(1.f,0.f,0.f));
+    view = glm::rotate(view, glm::radians(camera.get_yaw()), glm::vec3(0.f,1.f,0.f));
+    view = glm::rotate(view, glm::radians(camera.get_roll()), glm::vec3(0.f,0.f,1.f));
+    view = glm::translate(view, -camera.get_position());
+    return view;
+}

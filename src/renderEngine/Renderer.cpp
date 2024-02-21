@@ -7,14 +7,15 @@ const float Renderer::FAR_PLANE = 1000;
 
 Renderer::Renderer(DisplayManager display, StaticShader shader){
     float aspectRatio = static_cast<float>(display.get_width() )/ display.get_height();
-    this->projectionMatrix = glm::perspective(glm::radians(35.f), aspectRatio, 1.f, 1000.f);
+    this->projectionMatrix = glm::perspective(glm::radians(this->FOV), aspectRatio, this->NEAR_PLANE, this->FAR_PLANE);
     shader.start();
     shader.load_projection_matrix(projectionMatrix);
     shader.stop();
 }
 
 void Renderer::prepare(){
-    glClear(GL_COLOR_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0,0.3,0,1);
 }
 

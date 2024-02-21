@@ -1,10 +1,13 @@
 #ifndef STATICSHADER_H
 #define STATICSHADER_H
 
-#define GLM_ENABLE_EXPERIMENTAL
-#include <iostream>
+
 #include "ShaderProgram.h"
+#include "../entity/Camera.h"
+#include "../utils/Maths.h"
+
 #include <glm/glm.hpp>
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
 class StaticShader : public ShaderProgram{
@@ -12,6 +15,7 @@ public:
     StaticShader();
     void load_transformation_matrix(glm::mat4& mat);
     void load_projection_matrix(glm::mat4& mat);
+    void load_view_matrix(Camera camera);
 
 protected:
     virtual void bind_attributes() override;
@@ -23,6 +27,7 @@ private:
 
     int locationTransformationMatrix; 
     int locationProjectionMatrix;
+    int locationViewMatrix;
 };
 
 #endif //STATICSHADER_H
