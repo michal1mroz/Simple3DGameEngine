@@ -29,6 +29,8 @@ unsigned int Texture::get_texture_ID(){
     return this->textureID;
 }
 
+// Assuming that textures are pngs with standard 3 or 4 color channels
+
 void Texture::texture_generate_texture(){
     switch(this->colorChanels){
         case 3: // .png without alpha channel

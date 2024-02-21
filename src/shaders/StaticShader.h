@@ -9,6 +9,7 @@ public:
 
 protected:
     virtual void bind_attributes() override;
+    virtual void get_all_uniform_locations() override;
 
 private:
     static const std::string VERTEX_FILE;

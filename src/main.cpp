@@ -50,7 +50,7 @@ int main(){
     Renderer renderer;
 
     RawModel model = loader.load_to_VAO(vertices, vertCount, indices, indCount, texCoords, texCount);
-    ModelTexture texture(loader.load_texture("pop_cat.png"));
+    ModelTexture texture(loader.load_texture("Important.png"));
     TexturedModel texModel(model, texture);
 
     while(!glfwWindowShouldClose(dm.window)){
