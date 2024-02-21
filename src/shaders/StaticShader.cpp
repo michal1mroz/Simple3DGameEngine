@@ -14,5 +14,9 @@ void StaticShader::bind_attributes(){
 }
 
 void StaticShader::get_all_uniform_locations(){
-    get_uniform_location("transformationMatrix");
+    this->locationTransformationMatrix = get_uniform_location("transformationMatrix");
+}
+
+void StaticShader::load_transformation_matrix(glm::mat4& mat){
+    load_matrix(this->locationTransformationMatrix, mat);
 }

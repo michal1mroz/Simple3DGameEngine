@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(OpenGL REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
 find_package(GLEW REQUIRED)
+find_package(glm REQUIRED)
 
 set(STB_INCLUDE_DIR "usr/include/stb/stb_image.h")
 
@@ -18,15 +19,17 @@ file(GLOB_RECURSE sources
     "src/main.cpp" # main file
     "src/renderEngine/*.cpp" # render engine classes
     "src/shaders/*.cpp" # shaders
-    "src/textures/*.cpp"
-    "src/models/*.cpp"
+    "src/textures/*.cpp" # texture definitions
+    "src/models/*.cpp" # general models
+    "src/utils/*.cpp" # helper classes and functions
+    "src/entity/*.cpp" # entity
 )
 
 include_directories(${STB_INCLUDE_DIR})
 
 add_executable(${output_name} ${sources})
 
-target_link_libraries(${output_name} GLEW glfw OpenGL)
+target_link_libraries(${output_name} GLEW glfw OpenGL glm)
 
 add_custom_target(run
     COMMAND ${CMAKE_BINARY_DIR}/${output_name}

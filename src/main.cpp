@@ -11,10 +11,12 @@
 
 #include "textures/ModelTexture.h"
 
+#include "entity/Entity.h"
 
 // Needed for stb_image to work
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
+#include <glm/glm.hpp>
 
 int main(){
 
@@ -50,13 +52,18 @@ int main(){
     Renderer renderer;
 
     RawModel model = loader.load_to_VAO(vertices, vertCount, indices, indCount, texCoords, texCount);
-    ModelTexture texture(loader.load_texture("Important.png"));
+    ModelTexture texture(loader.load_texture("pop_cat.png"));
     TexturedModel texModel(model, texture);
 
+    glm::vec3 position = glm::vec3(-1.f,0.f,0.f);
+    Entity entity(texModel, position, 0.f, 0.f,0.f,5.f);
+
     while(!glfwWindowShouldClose(dm.window)){
+        entity.set_position(0.001f, 0.f,0.f);
+        entity.set_rotation(2,2,0);
         renderer.prepare();
         shader.start();
-        renderer.render(texModel);
+        renderer.render(entity, shader);
         shader.stop();
         dm.update_display();        
     }

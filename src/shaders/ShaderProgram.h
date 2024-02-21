@@ -5,6 +5,8 @@
 #include <fstream>
 #include <sstream>
 #include <GL/glew.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
     /*
         This class should be treated as a pure abstract one.
@@ -31,9 +33,9 @@ protected:
     virtual void get_all_uniform_locations() = 0;
 
     void load_float(int location, float val);
-    void load_vector(int location, float vect[3]);
+    void load_vector(int location, glm::vec3& vect);
     void load_boolean(int location, bool val);
-    void load_matrix(int location, float mat[4][4]);
+    void load_matrix(int location, glm::mat4& mat);
 
 private:
     int programID;

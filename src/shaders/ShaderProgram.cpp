@@ -77,14 +77,14 @@ void ShaderProgram::load_float(int location, float val){
     glUniform1f(location, val);
 }
 
-void ShaderProgram::load_vector(int location, float vect[3]){
-    glUniform3f(location, vect[0], vect[1], vect[2]);
+void ShaderProgram::load_vector(int location, glm::vec3& vect){
+    glUniform3fv(location,1, glm::value_ptr(vect));
 }
 
 void ShaderProgram::load_boolean(int location, bool val){
     glUniform1f(location, static_cast<int>(val));
 }
 
-void ShaderProgram::load_matrix(int location, float mat[4][4]){
-    glUniformMatrix4fv(location, 1, GL_FALSE, &mat[0][0]);
+void ShaderProgram::load_matrix(int location, glm::mat4& mat){
+    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat));
 }
