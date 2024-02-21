@@ -18,9 +18,6 @@
 #include <stb/stb_image.h>
 #include <glm/glm.hpp>
 
-#include <glm/gtx/string_cast.hpp>
-#include <glm/gtx/string_cast.hpp>
-
 int main(){
 
     DisplayManager dm;
@@ -55,17 +52,17 @@ int main(){
     Renderer renderer(dm, shader);
 
     RawModel model = loader.load_to_VAO(vertices, vertCount, indices, indCount, texCoords, texCount);
-    ModelTexture texture(loader.load_texture("Important.png"));
+    ModelTexture texture(loader.load_texture("pop_cat.png"));
     TexturedModel texModel(model, texture);
     glm::vec3 position = glm::vec3(0.f,0.f,-1.f);
     Entity entity(texModel, position, 0.f, 0.f,0.f,1.f);
 
     while(!glfwWindowShouldClose(dm.window)){
-        //entity.set_position(0.f, 0.f,-0.01f);
+        entity.set_position(0.f, 0.0001f,-0.01f);
+        entity.set_rotation(1,1,1);
         renderer.prepare();
         shader.start();
         renderer.render(entity, shader);
-        std::cout << glm::to_string(entity.get_position()) << std::endl;
         shader.stop();
         dm.update_display();
     }

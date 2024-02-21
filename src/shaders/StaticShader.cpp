@@ -3,9 +3,10 @@
 const std::string StaticShader::VERTEX_FILE = "src/shaders/vertexShader.txt";
 const std::string StaticShader::FRAGMENT_FILE = "src/shaders/fragmentShader.txt";
 
-StaticShader::StaticShader() : ShaderProgram(VERTEX_FILE, FRAGMENT_FILE) {
+StaticShader::StaticShader() : ShaderProgram(VERTEX_FILE, FRAGMENT_FILE){
     bind_attributes();
     validate_program();
+    get_all_uniform_locations();
 }
 
 void StaticShader::bind_attributes(){
