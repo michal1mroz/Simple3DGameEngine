@@ -5,6 +5,7 @@
 #include "ShaderProgram.h"
 #include "../entity/Camera.h"
 #include "../utils/Maths.h"
+#include "../entity/Light.h"
 
 #include <glm/glm.hpp>
 #define GLM_ENABLE_EXPERIMENTAL
@@ -16,6 +17,7 @@ public:
     void load_transformation_matrix(glm::mat4& mat);
     void load_projection_matrix(glm::mat4& mat);
     void load_view_matrix(Camera camera);
+    void load_light(Light light);
 
 protected:
     virtual void bind_attributes() override;
@@ -28,6 +30,8 @@ private:
     int locationTransformationMatrix; 
     int locationProjectionMatrix;
     int locationViewMatrix;
+    int locationLightPosition;
+    int locationLightColor;
 };
 
 #endif //STATICSHADER_H

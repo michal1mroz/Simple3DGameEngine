@@ -22,7 +22,9 @@ private:
     void bind_indices_buffer(int indices[], int indicesCount);
 
 public:
-    RawModel load_to_VAO(float positions[], int vertCount, int indices[], int indicesCount, float textureCoordinates[], int textureCount);
+    RawModel load_to_VAO(float positions[], int vertCount, int indices[],
+        int indicesCount, float textureCoordinates[], int textureCount,
+        float normals[], int normalsCount);
     unsigned int load_texture(std::string fileName);
     void clean_up();
 };

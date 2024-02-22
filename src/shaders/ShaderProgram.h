@@ -33,7 +33,7 @@ protected:
     virtual void get_all_uniform_locations() = 0;
 
     void load_float(int location, float val);
-    void load_vector(int location, glm::vec3& vect);
+    void load_vector(int location,const glm::vec3& vect);
     void load_boolean(int location, bool val);
     void load_matrix(int location, glm::mat4& mat);
 

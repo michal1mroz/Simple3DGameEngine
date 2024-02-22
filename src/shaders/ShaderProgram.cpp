@@ -77,7 +77,7 @@ void ShaderProgram::load_float(int location, float val){
     glUniform1f(location, val);
 }
 
-void ShaderProgram::load_vector(int location, glm::vec3& vect){
+void ShaderProgram::load_vector(int location,const glm::vec3& vect){
     glUniform3fv(location,1, glm::value_ptr(vect));
 }
 

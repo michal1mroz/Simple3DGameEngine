@@ -13,6 +13,7 @@
 
 #include "entity/Entity.h"
 #include "entity/Camera.h"
+#include "entity/Light.h"
 
 #include "utils/Maths.h"
 #include "utils/OBJParser.h"
@@ -34,21 +35,24 @@ int main(){
     Loader loader;
     Renderer renderer(dm, shader);
 
-	RawModel model = OBJParser::load_obj_model("stall/stall.obj", loader);
+	RawModel model = OBJParser::load_obj_model("dragon/dragon.obj", loader);
 	
-	ModelTexture texture(loader.load_texture("stall/stallTexture.png"));
+	ModelTexture texture(loader.load_texture("Solid_white.png"));
     TexturedModel texModel(model, texture);
-    glm::vec3 position = glm::vec3(0.f,0.f,-50.f);
+    glm::vec3 position = glm::vec3(0.f,-5.f,-20.f);
     Entity entity(texModel, position, 0.f, 0.f,0.f,1.f);
+
+	Light light(glm::vec3(0,0,20),glm::vec3(1,1,1));
 
     Camera camera(dm);
 
     while(!glfwWindowShouldClose(dm.window)){
         //entity.set_position(0.f, 0.f,-0.01f);
         camera.move();
-        entity.set_rotation(1,1,1);
+        entity.set_rotation(0,1,0);
         renderer.prepare();
         shader.start();
+		shader.load_light(light);
         shader.load_view_matrix(camera);
         renderer.render(entity, shader);
         shader.stop();

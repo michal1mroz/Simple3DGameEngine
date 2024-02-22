@@ -1,11 +1,14 @@
 #include "Loader.h"
 
-RawModel Loader::load_to_VAO(float positions[], int vertCount, int indices[], int indicesCount, float textureCoordinates[], int textureCount){
+RawModel Loader::load_to_VAO(float positions[], int vertCount, int indices[],
+            int indicesCount, float textureCoordinates[], int textureCount,
+            float normals[], int normalsCount){
+
     unsigned int vaoID = create_VAO();
     bind_indices_buffer(indices, indicesCount);
     store_data_in_attrib_list(0, positions, vertCount, 3);
     store_data_in_attrib_list(1, textureCoordinates, textureCount, 2);
-
+    store_data_in_attrib_list(2, normals, normalsCount, 3);
     unbind_VAO();
 
     return RawModel(vaoID, indicesCount);

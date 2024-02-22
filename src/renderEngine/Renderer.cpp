@@ -26,6 +26,7 @@ void Renderer::render(Entity entity, StaticShader shader){
     glBindVertexArray(model.get_vaoID());
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(2);
 
     auto position = entity.get_position(); // Trololololo
     glm::mat4 transformationMatrix = Maths::create_transformation_matrix(position, entity.get_rotation_x(),
@@ -35,7 +36,9 @@ void Renderer::render(Entity entity, StaticShader shader){
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texturedModel.get_texture().get_texture_id());
     glDrawElements(GL_TRIANGLES, model.get_vertexCount(), GL_UNSIGNED_INT, 0);
+    
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
+    glDisableVertexAttribArray(2);
     glBindVertexArray(0);
 }

@@ -88,6 +88,7 @@ RawModel OBJParser::load_obj_model(std::string fileName, Loader loader){
     int vertCount = sizeof(verticesArray) / sizeof(float);
     int texCount = sizeof(textureArray) / sizeof(float);
     int indexCount = sizeof(indicesArray) / sizeof(int);
+    int normalCount = sizeof(normalArray) / sizeof(float);
 
-    return loader.load_to_VAO(verticesArray, vertCount, indicesArray, indexCount, textureArray, texCount);
+    return loader.load_to_VAO(verticesArray, vertCount, indicesArray, indexCount, textureArray, texCount, normalArray, normalCount);
 }
