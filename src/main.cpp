@@ -22,8 +22,6 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
 #include <glm/glm.hpp>
-#define GLM_ENABLE_EXPERIMENTA
-#include <glm/gtx/string_cast.hpp>
 
 int main(){
 
@@ -39,10 +37,13 @@ int main(){
 	
 	ModelTexture texture(loader.load_texture("Solid_white.png"));
     TexturedModel texModel(model, texture);
-    glm::vec3 position = glm::vec3(0.f,-5.f,-20.f);
-    Entity entity(texModel, position, 0.f, 0.f,0.f,1.f);
+	texture.set_shine_damper(10);
+	texture.set_reflectivity(1);
 
-	Light light(glm::vec3(0,0,20),glm::vec3(1,1,1));
+    glm::vec3 position = glm::vec3(0.f,-5.f,-20.f);
+
+    Entity entity(texModel, position, 0.f, 0.f,0.f,1.f);
+	Light light(glm::vec3(10,10,-10),glm::vec3(1,1,1));
 
     Camera camera(dm);
 

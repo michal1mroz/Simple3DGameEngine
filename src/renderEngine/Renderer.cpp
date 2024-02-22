@@ -33,6 +33,9 @@ void Renderer::render(Entity entity, StaticShader shader){
         entity.get_rotation_y(), entity.get_rotation_z(), entity.get_scale());
     shader.load_transformation_matrix(transformationMatrix);
 
+    ModelTexture texture = texturedModel.get_texture();
+    shader.load_shine_variables(texture.get_shine_damper(), texture.get_reflectivity());
+
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texturedModel.get_texture().get_texture_id());
     glDrawElements(GL_TRIANGLES, model.get_vertexCount(), GL_UNSIGNED_INT, 0);

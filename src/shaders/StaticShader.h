@@ -14,10 +14,13 @@
 class StaticShader : public ShaderProgram{
 public:
     StaticShader();
+    
     void load_transformation_matrix(glm::mat4& mat);
     void load_projection_matrix(glm::mat4& mat);
     void load_view_matrix(Camera camera);
+    
     void load_light(Light light);
+    void load_shine_variables(float damper, float reflectivity);
 
 protected:
     virtual void bind_attributes() override;
@@ -32,6 +35,8 @@ private:
     int locationViewMatrix;
     int locationLightPosition;
     int locationLightColor;
+    int locationShineDamper;
+    int loactionReflectivity;
 };
 
 #endif //STATICSHADER_H

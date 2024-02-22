@@ -5,6 +5,7 @@
 #include "../shaders/StaticShader.h"
 #include "../utils/Maths.h"
 #include "DisplayManager.h"
+#include "../textures/ModelTexture.h"
 
 #include <iostream>
 #include <GL/glew.h>
