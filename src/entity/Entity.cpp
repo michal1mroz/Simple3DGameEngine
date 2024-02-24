@@ -1,5 +1,12 @@
 #include "Entity.h"
 
+Entity::Entity() : position(glm::vec3(0,0,0)), rotX(0),rotY(0),rotZ(0),scale(0) {
+    Loader loader;
+    RawModel model = OBJParser::load_obj_model("place_holder/cube.obj", loader);
+	ModelTexture texture(loader.load_texture("Solid_white.png"));
+    this->model = TexturedModel(model, texture);
+}
+
 Entity::Entity(TexturedModel model, glm::vec3& vec, float rx, float ry, float rz, float scale) 
     : model(model), position(vec), rotX(rx), rotY(ry), rotZ(rz), scale(scale){}
     

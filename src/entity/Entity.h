@@ -1,14 +1,16 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <glm/glm.hpp>
 #include "../models/TexturedModel.h"
+#include "../renderEngine/Loader.h"
+#include "../models/RawModel.h"
+#include "../textures/ModelTexture.h"
 
-#define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtx/string_cast.hpp>
+#include <glm/glm.hpp>
 
 class Entity{
 public:
+    Entity();
     Entity(TexturedModel model, glm::vec3& position, float rx, float ry, float rz, float scale);
 
     TexturedModel get_model();

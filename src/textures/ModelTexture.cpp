@@ -1,5 +1,7 @@
 #include "ModelTexture.h"
 
+ModelTexture::ModelTexture() : textureID(0) {}
+
 ModelTexture::ModelTexture(unsigned int id){
     this->textureID = id;
 }

@@ -6,6 +6,7 @@ private:
     unsigned int vaoID;
     int vertexCount;
 public:
+    RawModel();
     RawModel(unsigned int vaoID, int vertexCount);
 
     unsigned int get_vaoID();

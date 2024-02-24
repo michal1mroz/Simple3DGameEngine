@@ -3,6 +3,7 @@
 #include "renderEngine/DisplayManager.h"
 #include "renderEngine/Renderer.h"
 #include "renderEngine/Loader.h"
+#include "renderEngine/MasterRenderer.h"
 
 #include "models/RawModel.h"
 #include "models/TexturedModel.h"
@@ -22,45 +23,58 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
 #include <glm/glm.hpp>
+#include <random>
+#include <vector>
 
 int main(){
 
     DisplayManager dm;
     dm.create_display();
 
-    StaticShader shader;
-
     Loader loader;
-    Renderer renderer(dm, shader);
 
-	RawModel model = OBJParser::load_obj_model("dragon/dragon.obj", loader);
+	RawModel model = OBJParser::load_obj_model("place_holder/cube.obj", loader);
 	
 	ModelTexture texture(loader.load_texture("Solid_white.png"));
     TexturedModel texModel(model, texture);
 	texture.set_shine_damper(10);
 	texture.set_reflectivity(1);
 
-    glm::vec3 position = glm::vec3(0.f,-5.f,-20.f);
+    std::vector<Entity> entities;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> distribution(10, 200);
+    for(int i = 0; i<100; i++){
+        float x = distribution(gen);
+        float y = distribution(gen);
+        float z = distribution(gen);
+        glm::vec3 position = glm::vec3(-x,-y,-z);
+        Entity entity(texModel, position, 0.f, 0.f,0.f,1.f);
+        entities.push_back(entity);
+    }
 
-    Entity entity(texModel, position, 0.f, 0.f,0.f,1.f);
+    //glm::vec3 position = glm::vec3(0.f,0.f,-20.f);
+
+    //Entity entity(texModel, position, 0.f, 0.f,0.f,1.f);
 	Light light(glm::vec3(10,10,-10),glm::vec3(1,1,1));
 
     Camera camera(dm);
 
+    MasterRenderer renderer(dm);
+
     while(!glfwWindowShouldClose(dm.window)){
         //entity.set_position(0.f, 0.f,-0.01f);
         camera.move();
-        entity.set_rotation(0,1,0);
-        renderer.prepare();
-        shader.start();
-		shader.load_light(light);
-        shader.load_view_matrix(camera);
-        renderer.render(entity, shader);
-        shader.stop();
+        
+        for(Entity entity : entities){
+            renderer.process_entity(entity);
+        }
+
+        renderer.render(light, camera);
         dm.update_display();
     }
 
-    shader.clean_up();
+    renderer.clean_up();
     loader.clean_up();
     dm.close_display();
     return 0;

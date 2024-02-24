@@ -5,6 +5,7 @@
 
 class ModelTexture{
 public:
+    ModelTexture();
     ModelTexture(unsigned int id);
     unsigned int get_texture_id();
 
